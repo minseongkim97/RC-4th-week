@@ -21,5 +21,9 @@ class StartViewController: UIViewController {
         let gamevc = storyboard?.instantiateViewController(withIdentifier: "GameViewController") as! GameViewController
         present(gamevc, animated: true, completion: nil)
     }
+    
+    @IBAction func unwindToStartView(segue: UIStoryboardSegue) {
+        
+    }
 }
 

@@ -13,6 +13,8 @@
 		24815E65269A2A1300DCD7FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24815E63269A2A1300DCD7FA /* Main.storyboard */; };
 		24815E67269A2A1400DCD7FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24815E66269A2A1400DCD7FA /* Assets.xcassets */; };
 		24815E6A269A2A1400DCD7FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24815E68269A2A1400DCD7FA /* LaunchScreen.storyboard */; };
+		2489FD92269E059B00AF95A6 /* CustomTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2489FD91269E059B00AF95A6 /* CustomTimer.swift */; };
+		2489FD94269E1C9300AF95A6 /* GameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2489FD93269E1C9300AF95A6 /* GameOverViewController.swift */; };
 		249EDFFD269D87080079033D /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249EDFFC269D87080079033D /* GameViewController.swift */; };
 		249EDFFF269D90A00079033D /* SourceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249EDFFE269D90A00079033D /* SourceButton.swift */; };
 		249EE001269D919C0079033D /* DeskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249EE000269D919C0079033D /* DeskView.swift */; };
@@ -27,6 +29,8 @@
 		24815E66269A2A1400DCD7FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		24815E69269A2A1400DCD7FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		24815E6B269A2A1400DCD7FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2489FD91269E059B00AF95A6 /* CustomTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTimer.swift; sourceTree = "<group>"; };
+		2489FD93269E1C9300AF95A6 /* GameOverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
 		249EDFFC269D87080079033D /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		249EDFFE269D90A00079033D /* SourceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceButton.swift; sourceTree = "<group>"; };
 		249EE000269D919C0079033D /* DeskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeskView.swift; sourceTree = "<group>"; };
@@ -104,6 +108,8 @@
 			children = (
 				24815E61269A2A1300DCD7FA /* StartViewController.swift */,
 				249EDFFC269D87080079033D /* GameViewController.swift */,
+				2489FD93269E1C9300AF95A6 /* GameOverViewController.swift */,
+				2489FD91269E059B00AF95A6 /* CustomTimer.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -194,9 +200,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2489FD92269E059B00AF95A6 /* CustomTimer.swift in Sources */,
 				249EDFFF269D90A00079033D /* SourceButton.swift in Sources */,
 				249EE001269D919C0079033D /* DeskView.swift in Sources */,
 				249EDFFD269D87080079033D /* GameViewController.swift in Sources */,
+				2489FD94269E1C9300AF95A6 /* GameOverViewController.swift in Sources */,
 				24815E62269A2A1300DCD7FA /* StartViewController.swift in Sources */,
 				24815E5E269A2A1300DCD7FA /* AppDelegate.swift in Sources */,
 				24815E60269A2A1300DCD7FA /* SceneDelegate.swift in Sources */,
