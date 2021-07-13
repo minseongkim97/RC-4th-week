@@ -13,11 +13,13 @@ class GameViewController: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet var sourceButtons: [UIButton]!
+    @IBOutlet var wholeButtons: [UIButton]!
     
     var timer: Timer = Timer()
     var count: Int = 10
     var sourceIndex: Int = 0
-    var level: Int = 0
+    var wholeIndex: Int = 0
+    var level = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,18 +44,19 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func wholeBtnPressed(_ sender: UIButton) {
+        wholeIndex = wholeButtons.firstIndex(of: sender)!
+        print(wholeIndex)
         switch sourceIndex {
         case 0:
-            if level == 0 {
+            if level[wholeIndex] == 0 {
                 putDough(in: sender)
             }
         case 1:
-            if level == 0 {
+            if level[wholeIndex] == 1 {
                 putOct(in: sender)
-                
             }
         case 2:
-            sender.setImage( UIImage(named: "반죽"), for: .normal)
+            flipDough(over: sender)
         case 3:
             sender.setImage( UIImage(named: "반죽"), for: .normal)
         case 4:
@@ -75,17 +78,20 @@ class GameViewController: UIViewController {
     }
     
     func putDough(in whole: UIButton) {
-        whole.setImage(UIImage(named: "1단계"), for: .normal)
+        whole.setImage(UIImage(named: "반죽"), for: .normal)
+        level[wholeIndex] += 1
     }
     
     func putOct(in whole: UIButton) {
         whole.setImage(UIImage(named: "문어올린반죽"), for: .normal)
+        level[wholeIndex] += 1
     }
     
     func flipDough(over whole: UIButton) {
-        if level == 2 {
+        if level[wholeIndex] == 2 {
             whole.setImage(UIImage(named: "1단계"), for: .normal)
-        } else if level == 3 {
+            level[wholeIndex] += 1
+        } else if level[wholeIndex] == 3 {
             let rotation: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
             rotation.toValue = Double.pi * 2
             rotation.duration = 0.15 // 1바퀴 도는데 걸리는 시간
