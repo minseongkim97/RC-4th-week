@@ -30,6 +30,11 @@ class GameViewController: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut) {
+            self.customerImage.transform = CGAffineTransform(translationX:  -UIScreen.main.bounds.size.height/2-70, y: 0)
+        }
+
 
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerCounter), userInfo: nil, repeats: true)
         
@@ -48,6 +53,7 @@ class GameViewController: UIViewController {
     @IBAction func wholeBtnPressed(_ sender: UIButton) {
 
         wholeIndex = wholeButtons.firstIndex(of: sender)!
+
         
         switch sourceIndex {
         case 0:
