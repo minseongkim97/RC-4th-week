@@ -17,7 +17,7 @@ class GameViewController: UIViewController {
     var timer: Timer = Timer()
     var count: Int = 10
     var sourceIndex: Int = 0
-    
+    var level: Int = 0
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,11 +37,30 @@ class GameViewController: UIViewController {
             sourceBtn.backgroundColor = .white
         }
         sender.backgroundColor = .yellow
+        sourceIndex = sourceButtons.firstIndex(of: sender)!
 
     }
     
     @IBAction func wholeBtnPressed(_ sender: UIButton) {
-        
+        switch sourceIndex {
+        case 0:
+            if level == 0 {
+                putDough(in: sender)
+            }
+        case 1:
+            if level == 0 {
+                putOct(in: sender)
+                
+            }
+        case 2:
+            sender.setImage( UIImage(named: "반죽"), for: .normal)
+        case 3:
+            sender.setImage( UIImage(named: "반죽"), for: .normal)
+        case 4:
+            sender.setImage( UIImage(named: "반죽"), for: .normal)
+        default:
+            print("이 단계가 아닙니다.")
+        }
     }
     //MARK: - Function
     @objc func timerCounter() {
@@ -52,6 +71,27 @@ class GameViewController: UIViewController {
         if count == 0 {
             timer.invalidate()
             print("game over")
+        }
+    }
+    
+    func putDough(in whole: UIButton) {
+        whole.setImage(UIImage(named: "1단계"), for: .normal)
+    }
+    
+    func putOct(in whole: UIButton) {
+        whole.setImage(UIImage(named: "문어올린반죽"), for: .normal)
+    }
+    
+    func flipDough(over whole: UIButton) {
+        if level == 2 {
+            whole.setImage(UIImage(named: "1단계"), for: .normal)
+        } else if level == 3 {
+            let rotation: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+            rotation.toValue = Double.pi * 2
+            rotation.duration = 0.15 // 1바퀴 도는데 걸리는 시간
+            rotation.isCumulative = true
+            rotation.repeatCount = 1 // 몇번 반복 할것인가
+            whole.layer.add(rotation, forKey: "rotationAnimation") // 원하는 뷰에 애니메이션 삽입
         }
     }
 }
