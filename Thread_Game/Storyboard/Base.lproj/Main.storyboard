@@ -224,19 +224,26 @@
                                             <constraint firstItem="cTM-1c-98P" firstAttribute="centerX" secondItem="rxT-lG-d89" secondAttribute="centerX" id="xQu-b9-2FZ"/>
                                         </constraints>
                                     </view>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="제공판" translatesAutoresizingMaskIntoConstraints="NO" id="X0J-do-HDQ">
-                                        <rect key="frame" x="379" y="20" width="106" height="213"/>
-                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b5Y-Ca-2Rr">
+                                        <rect key="frame" x="369" y="10" width="130" height="233"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="130" id="UXm-6F-Sc3"/>
+                                        </constraints>
+                                        <state key="normal" image="제공판"/>
+                                        <connections>
+                                            <action selector="plateBtnPressed:" destination="6bj-cD-o3j" eventType="touchUpInside" id="FiZ-Q6-cKS"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.74901962280000001" green="0.4196078479" blue="0.2470588088" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="kdz-0k-Shu" secondAttribute="bottom" constant="-3" id="1WE-SA-r1B"/>
                                     <constraint firstItem="rxT-lG-d89" firstAttribute="top" secondItem="kdz-0k-Shu" secondAttribute="top" constant="25" id="9ie-M0-7NN"/>
                                     <constraint firstItem="kdz-0k-Shu" firstAttribute="trailing" secondItem="rxT-lG-d89" secondAttribute="trailing" constant="25" id="BdW-61-JfL"/>
-                                    <constraint firstAttribute="bottom" secondItem="X0J-do-HDQ" secondAttribute="bottom" constant="20" id="SRf-NZ-xah"/>
+                                    <constraint firstItem="b5Y-Ca-2Rr" firstAttribute="top" secondItem="nip-2l-ZcY" secondAttribute="top" constant="10" id="LbX-YM-n0e"/>
+                                    <constraint firstItem="b5Y-Ca-2Rr" firstAttribute="leading" secondItem="kdz-0k-Shu" secondAttribute="trailing" constant="10" id="hFf-0i-KVG"/>
+                                    <constraint firstAttribute="bottom" secondItem="b5Y-Ca-2Rr" secondAttribute="bottom" constant="10" id="hcU-5F-ecO"/>
                                     <constraint firstItem="rxT-lG-d89" firstAttribute="leading" secondItem="kdz-0k-Shu" secondAttribute="leading" constant="25" id="oHc-sO-4Ew"/>
-                                    <constraint firstItem="X0J-do-HDQ" firstAttribute="leading" secondItem="kdz-0k-Shu" secondAttribute="trailing" constant="20" id="pCa-yb-4Kx"/>
-                                    <constraint firstItem="X0J-do-HDQ" firstAttribute="top" secondItem="nip-2l-ZcY" secondAttribute="top" constant="20" id="snF-OP-8nX"/>
                                     <constraint firstItem="kdz-0k-Shu" firstAttribute="bottom" secondItem="rxT-lG-d89" secondAttribute="bottom" constant="40" id="u2V-Wv-84T"/>
                                     <constraint firstAttribute="width" constant="530" id="uui-BB-k72"/>
                                     <constraint firstItem="kdz-0k-Shu" firstAttribute="leading" secondItem="nip-2l-ZcY" secondAttribute="leading" constant="21" id="zaj-QJ-XyA"/>
@@ -364,6 +371,7 @@
                     </view>
                     <connections>
                         <outlet property="customerImage" destination="23a-Vm-y9x" id="Tcz-y1-b2W"/>
+                        <outlet property="plateButton" destination="b5Y-Ca-2Rr" id="68W-dc-B2C"/>
                         <outlet property="scoreLabel" destination="oKB-Ai-J8W" id="PR6-SS-umi"/>
                         <outlet property="timeLabel" destination="KbT-in-iTq" id="JRx-QV-VFf"/>
                         <outletCollection property="sourceButtons" destination="fmP-u5-cW5" collectionClass="NSMutableArray" id="AfX-Cu-xu3"/>
@@ -450,7 +458,7 @@
         <image name="양념솔" width="86" height="88"/>
         <image name="재료문어" width="86" height="88"/>
         <image name="제공손" width="86" height="88"/>
-        <image name="제공판" width="106" height="173"/>
+        <image name="제공판" width="212" height="346"/>
         <image name="제목" width="517" height="101"/>
         <image name="타코야키판" width="338" height="281"/>
         <image name="타코야키판홀" width="72.5" height="57"/>

@@ -15,6 +15,8 @@ class GameViewController: UIViewController {
     @IBOutlet weak var customerImage: UIImageView!
     @IBOutlet var sourceButtons: [UIButton]!
     @IBOutlet var wholeButtons: [UIButton]!
+    @IBOutlet weak var plateButton: UIButton!
+    
     
     var timer: Timer?
     var tacoTimer0: Timer?
@@ -35,11 +37,13 @@ class GameViewController: UIViewController {
     var tacoTimer15: Timer?
 
     var count: Int = 200
+    var score: Int = 0
     var countTimeBurnTaco: Int = 30
     var countTimeBurnTaco1: Int = 30
     var countTimeBurnTaco2: Int = 30
     var sourceIndex: Int = -1
     var wholeIndex: Int = 0
+    var tacoNumInPlate: Int = 0
     var level = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     //MARK: - LifeCycle
     override func viewDidLoad() {
@@ -92,18 +96,49 @@ class GameViewController: UIViewController {
         case 2:
             flipDough(over: sender)
             moveTacoToPlate(from: sender)
-            
-            
-        case 3:
-            sender.setImage( UIImage(named: "반죽"), for: .normal)
-        case 4:
-            sender.setImage( UIImage(named: "반죽"), for: .normal)
+
         default:
             print("이 단계가 아닙니다.")
         }
     }
-
-    //MARK: - Function
+    
+    @IBAction func plateBtnPressed(_ sender: UIButton) {
+        
+        if tacoNumInPlate == 8 && sourceIndex == 3 {
+            
+            switch plateButton.currentImage {
+            case UIImage(named: "제공판8"):
+                plateButton.setImage(UIImage(named: "소스1"), for: .normal)
+            case UIImage(named: "소스1"):
+                plateButton.setImage(UIImage(named: "소스2"), for: .normal)
+            case UIImage(named: "소스2"):
+                plateButton.setImage(UIImage(named: "소스3"), for: .normal)
+            case UIImage(named: "소스3"):
+                plateButton.setImage(UIImage(named: "소스4"), for: .normal)
+            case UIImage(named: "소스4"):
+                plateButton.setImage(UIImage(named: "소스5"), for: .normal)
+            case UIImage(named: "소스5"):
+                plateButton.setImage(UIImage(named: "소스6"), for: .normal)
+            case UIImage(named: "소스6"):
+                plateButton.setImage(UIImage(named: "소스7"), for: .normal)
+            case UIImage(named: "소스7"):
+                plateButton.setImage(UIImage(named: "소스8"), for: .normal)
+         
+            default:
+                print("full sauce")
+            }
+        }
+        
+        if sourceIndex == 4 && sender.currentImage == UIImage(named: "소스8") {
+            tacoNumInPlate = 0
+            sender.setImage(UIImage(named: "제공판"), for: .normal)
+            score += 1
+            scoreLabel.text = String(score)
+        }
+    }
+    
+    
+    //MARK: - Objc Function
     @objc func timerCounter() {
         count -= 1
         DispatchQueue.main.async {
@@ -139,10 +174,43 @@ class GameViewController: UIViewController {
 
     }
     
-    @objc func gestureFired(_ gesture: UITapGestureRecognizer) {
-        print("fired")
+    @objc func gestureFired(_ gesture: UITapGestureRecognizer, whole: UIButton) {
+        print(tacoNumInPlate)
+        
+        switch tacoNumInPlate {
+        case 0:
+            plateButton.setImage(UIImage(named: "제공판1"), for: .normal)
+            tacoNumInPlate += 1
+            
+        case 1:
+            plateButton.setImage(UIImage(named: "제공판2"), for: .normal)
+            tacoNumInPlate += 1
+        case 2:
+            plateButton.setImage(UIImage(named: "제공판3"), for: .normal)
+            tacoNumInPlate += 1
+        case 3:
+            plateButton.setImage(UIImage(named: "제공판4"), for: .normal)
+            tacoNumInPlate += 1
+        case 4:
+            plateButton.setImage(UIImage(named: "제공판5"), for: .normal)
+            tacoNumInPlate += 1
+        case 5:
+            plateButton.setImage(UIImage(named: "제공판6"), for: .normal)
+            tacoNumInPlate += 1
+        case 6:
+            plateButton.setImage(UIImage(named: "제공판7"), for: .normal)
+            tacoNumInPlate += 1
+        case 7:
+            plateButton.setImage(UIImage(named: "제공판8"), for: .normal)
+            tacoNumInPlate += 1
+
+        default:
+            print("plate full")
+        }
     }
     
+
+    //MARK: - Function
     func putDough(in whole: UIButton) {
         whole.setImage(UIImage(named: "반죽"), for: .normal)
         level[wholeIndex] += 1
@@ -167,6 +235,7 @@ class GameViewController: UIViewController {
     
     func moveTacoToPlate(from whole: UIButton) {
         if whole.currentImage == UIImage(named: "2단계") {
+            
             let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(gestureFired))
             gestureRecognizer.numberOfTapsRequired = 2
             gestureRecognizer.numberOfTouchesRequired = 1
