@@ -57,7 +57,7 @@ class GameViewController: UIViewController {
         
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut) {
 
-            self.customerImage.transform = CGAffineTransform(translationX:  -UIScreen.main.bounds.size.height/2-60, y: 0)
+            self.customerImage.transform = CGAffineTransform(translationX:  -UIScreen.main.bounds.size.width/4, y: 0)
         }
         
         DispatchQueue.global(qos: .userInitiated).async {
@@ -134,6 +134,18 @@ class GameViewController: UIViewController {
             sender.setImage(UIImage(named: "제공판"), for: .normal)
             score += 1
             scoreLabel.text = String(score)
+            UIView.animate(withDuration: 1) {
+                self.customerImage.transform = CGAffineTransform(translationX:  -UIScreen.main.bounds.size.width, y: 0)
+            } completion: { _ in
+                UIView.animate(withDuration: 0) {
+                    self.customerImage.transform = CGAffineTransform.identity
+                }
+                UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut) {
+
+                    self.customerImage.transform = CGAffineTransform(translationX:  -UIScreen.main.bounds.size.height/2-60, y: 0)
+                }
+            }
+
         }
     }
     
@@ -244,6 +256,10 @@ class GameViewController: UIViewController {
             whole.isUserInteractionEnabled = true
         }
 
+    }
+    
+    func removeBurnTaco() {
+        
     }
     
     func rotate(_ whole: UIButton) {
