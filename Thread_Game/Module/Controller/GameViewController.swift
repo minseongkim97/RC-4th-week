@@ -107,7 +107,6 @@ class GameViewController: UIViewController {
             
         case 2:
             flipDough(over: sender)
-            doubleTapGesture(from: sender)
             removeBurnTaco(at: sender)
         default:
             print("이 단계가 아닙니다.")
@@ -198,7 +197,7 @@ class GameViewController: UIViewController {
 
     }
     
-    @objc func gestureFired(_ gesture: UITapGestureRecognizer, whole: UIButton) {
+    @objc func gestureFired(_ gesture: CustomTapGesture) {
         print(tacoNumInPlate)
         
         switch tacoNumInPlate {
@@ -231,6 +230,10 @@ class GameViewController: UIViewController {
         default:
             print("plate full")
         }
+        gesture.button.setImage(UIImage(named: "타코야키판홀"), for: .normal)
+        gesture.button.removeGestureRecognizer(gesture)
+   
+        level[wholeIndex] = 0
     }
     
 
@@ -259,15 +262,22 @@ class GameViewController: UIViewController {
                         print(self.countTimeBurnTaco0)
                       
                         DispatchQueue.main.async {
-                            if self.countTimeBurnTaco0 < 15 && self.countTimeBurnTaco0 > 0 {
+                            if self.countTimeBurnTaco0 == 15 {
                                 whole.setImage(UIImage(named: "2단계"), for: .normal)
+                                self.doubleTapGesture(from: whole, reset: self.countTimeBurnTaco0)
                             }
                             else if self.countTimeBurnTaco0 == 0 {
                                 self.tacoTimer0!.invalidate()
                                 self.countTimeBurnTaco0 = 30
                                 whole.setImage(UIImage(named: "3단계"), for: .normal)
                             }
+                            
+                            if whole.currentImage == UIImage(named: "타코야키판홀") {
+                                self.tacoTimer0!.invalidate()
+                                self.countTimeBurnTaco0 = 30
+                            }
                         }
+                        
                     })
                     
                     RunLoop.current.run()
@@ -279,8 +289,10 @@ class GameViewController: UIViewController {
                         print(self.countTimeBurnTaco1)
                       
                         DispatchQueue.main.async {
-                            if self.countTimeBurnTaco1 < 15 && self.countTimeBurnTaco1 > 0 {
+                            if self.countTimeBurnTaco1 == 15 {
                                 whole.setImage(UIImage(named: "2단계"), for: .normal)
+                                self.doubleTapGesture(from: whole, reset: self.countTimeBurnTaco1)
+                                
                             }
                             else if self.countTimeBurnTaco1 == 0 {
                                 self.tacoTimer1!.invalidate()
@@ -407,33 +419,15 @@ class GameViewController: UIViewController {
         }
     }
     
-//    @objc func counting(whole: UIButton) {
-//        countTimeBurnTaco -= 1
-//        print(countTimeBurnTaco)
-//        if self.countTimeBurnTaco == 0 {
-//            self.tacoTimer1!.invalidate()
-//        }
-//        DispatchQueue.main.async {
-//            if self.countTimeBurnTaco > 15 && self.countTimeBurnTaco < 20 {
-//                whole.setImage(UIImage(named: "2단계"), for: .normal)
-//            }
-//
-//            else if self.countTimeBurnTaco >= 20 {
-//                whole.setImage(UIImage(named: "3단계"), for: .normal)
-//            }
-//        }
-//    }
+
     
-    func doubleTapGesture(from whole: UIButton) {
-        
-        if whole.currentImage == UIImage(named: "2단계") {
-            let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(gestureFired))
-            gestureRecognizer.numberOfTapsRequired = 2
-            gestureRecognizer.numberOfTouchesRequired = 1
-            
-            whole.addGestureRecognizer(gestureRecognizer)
-            whole.isUserInteractionEnabled = true
-        }
+    func doubleTapGesture(from whole: UIButton, reset countTime: Int) {
+        let gestureRecognizer = CustomTapGesture(target: self, action: #selector(gestureFired))
+        gestureRecognizer.button = whole
+        gestureRecognizer.numberOfTapsRequired = 2
+        gestureRecognizer.numberOfTouchesRequired = 1
+
+        whole.addGestureRecognizer(gestureRecognizer)
 
     }
     
