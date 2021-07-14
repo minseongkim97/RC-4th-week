@@ -38,9 +38,22 @@ class GameViewController: UIViewController {
 
     var count: Int = 200
     var score: Int = 0
-    var countTimeBurnTaco: Int = 30
+    var countTimeBurnTaco0: Int = 30
     var countTimeBurnTaco1: Int = 30
     var countTimeBurnTaco2: Int = 30
+    var countTimeBurnTaco3: Int = 30
+    var countTimeBurnTaco4: Int = 30
+    var countTimeBurnTaco5: Int = 30
+    var countTimeBurnTaco6: Int = 30
+    var countTimeBurnTaco7: Int = 30
+    var countTimeBurnTaco8: Int = 30
+    var countTimeBurnTaco9: Int = 30
+    var countTimeBurnTaco10: Int = 30
+    var countTimeBurnTaco11: Int = 30
+    var countTimeBurnTaco12: Int = 30
+    var countTimeBurnTaco13: Int = 30
+    var countTimeBurnTaco14: Int = 30
+    var countTimeBurnTaco15: Int = 30
     var sourceIndex: Int = -1
     var wholeIndex: Int = 0
     var tacoNumInPlate: Int = 0
@@ -48,10 +61,9 @@ class GameViewController: UIViewController {
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
-       
+        
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -65,8 +77,7 @@ class GameViewController: UIViewController {
             
             RunLoop.current.run()
         }
-        
-        
+    
     }
     
     //MARK: - Action
@@ -81,12 +92,13 @@ class GameViewController: UIViewController {
     
     @IBAction func wholeBtnPressed(_ sender: UIButton) {
         wholeIndex = wholeButtons.firstIndex(of: sender)!
-
+        
         switch sourceIndex {
         case 0:
             if level[wholeIndex] == 0 {
                 putDough(in: sender)
             }
+            
             
         case 1:
             if level[wholeIndex] == 1 {
@@ -95,8 +107,8 @@ class GameViewController: UIViewController {
             
         case 2:
             flipDough(over: sender)
-            moveTacoToPlate(from: sender)
-
+            doubleTapGesture(from: sender)
+            removeBurnTaco(at: sender)
         default:
             print("이 단계가 아닙니다.")
         }
@@ -142,7 +154,7 @@ class GameViewController: UIViewController {
                 }
                 UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut) {
 
-                    self.customerImage.transform = CGAffineTransform(translationX:  -UIScreen.main.bounds.size.height/2-60, y: 0)
+                    self.customerImage.transform = CGAffineTransform(translationX:  -UIScreen.main.bounds.size.width/4, y: 0)
                 }
             }
 
@@ -234,9 +246,159 @@ class GameViewController: UIViewController {
     }
     
     func flipDough(over whole: UIButton) {
+      
         if level[wholeIndex] == 2 {
-            whole.setImage(UIImage(named: "2단계"), for: .normal)
+            whole.setImage(UIImage(named: "1단계"), for: .normal)
             rotate(whole)
+            
+            switch wholeIndex {
+            case 0:
+                DispatchQueue.global(qos: .userInitiated).async {
+                    self.tacoTimer0 = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
+                        self.countTimeBurnTaco0 -= 1
+                        print(self.countTimeBurnTaco0)
+                      
+                        DispatchQueue.main.async {
+                            if self.countTimeBurnTaco0 < 15 && self.countTimeBurnTaco0 > 0 {
+                                whole.setImage(UIImage(named: "2단계"), for: .normal)
+                            }
+                            else if self.countTimeBurnTaco0 == 0 {
+                                self.tacoTimer0!.invalidate()
+                                self.countTimeBurnTaco0 = 30
+                                whole.setImage(UIImage(named: "3단계"), for: .normal)
+                            }
+                        }
+                    })
+                    
+                    RunLoop.current.run()
+                }
+            case 1:
+                DispatchQueue.global(qos: .userInitiated).async {
+                    self.tacoTimer1 = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
+                        self.countTimeBurnTaco1 -= 1
+                        print(self.countTimeBurnTaco1)
+                      
+                        DispatchQueue.main.async {
+                            if self.countTimeBurnTaco1 < 15 && self.countTimeBurnTaco1 > 0 {
+                                whole.setImage(UIImage(named: "2단계"), for: .normal)
+                            }
+                            else if self.countTimeBurnTaco1 == 0 {
+                                self.tacoTimer1!.invalidate()
+                                self.countTimeBurnTaco1 = 30
+                                whole.setImage(UIImage(named: "3단계"), for: .normal)
+                            }
+                        }
+                    })
+                    
+                    RunLoop.current.run()
+                }
+            case 2:
+                DispatchQueue.global(qos: .userInitiated).async {
+                    self.tacoTimer2 = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
+                        self.countTimeBurnTaco2 -= 1
+                        print(self.countTimeBurnTaco2)
+                      
+                        DispatchQueue.main.async {
+                            if self.countTimeBurnTaco2 < 15 && self.countTimeBurnTaco2 > 0 {
+                                whole.setImage(UIImage(named: "2단계"), for: .normal)
+                            }
+                            else if self.countTimeBurnTaco2 == 0 {
+                                self.tacoTimer2!.invalidate()
+                                self.countTimeBurnTaco2 = 30
+                                whole.setImage(UIImage(named: "3단계"), for: .normal)
+                            }
+                        }
+                    })
+                    
+                    RunLoop.current.run()
+                }
+            case 3:
+                DispatchQueue.global(qos: .userInitiated).async {
+                    self.tacoTimer3 = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
+                        self.countTimeBurnTaco3 -= 1
+                        print(self.countTimeBurnTaco3)
+                      
+                        DispatchQueue.main.async {
+                            if self.countTimeBurnTaco3 < 15 && self.countTimeBurnTaco3 > 0 {
+                                whole.setImage(UIImage(named: "2단계"), for: .normal)
+                            }
+                            else if self.countTimeBurnTaco3 == 0 {
+                                self.tacoTimer3!.invalidate()
+                                self.countTimeBurnTaco3 = 30
+                                whole.setImage(UIImage(named: "3단계"), for: .normal)
+                            }
+                        }
+                    })
+                    
+                    RunLoop.current.run()
+                }
+            case 4:
+                DispatchQueue.global(qos: .userInitiated).async {
+                    self.tacoTimer4 = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
+                        self.countTimeBurnTaco4 -= 1
+                        print(self.countTimeBurnTaco4)
+                      
+                        DispatchQueue.main.async {
+                            if self.countTimeBurnTaco4 < 15 && self.countTimeBurnTaco4 > 0 {
+                                whole.setImage(UIImage(named: "2단계"), for: .normal)
+                            }
+                            else if self.countTimeBurnTaco4 == 0 {
+                                self.tacoTimer4!.invalidate()
+                                self.countTimeBurnTaco4 = 30
+                                whole.setImage(UIImage(named: "3단계"), for: .normal)
+                            }
+                        }
+                    })
+                    
+                    RunLoop.current.run()
+                }
+                
+            case 5:
+                DispatchQueue.global(qos: .userInitiated).async {
+                    self.tacoTimer5 = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
+                        self.countTimeBurnTaco5 -= 1
+                        print(self.countTimeBurnTaco5)
+                      
+                        DispatchQueue.main.async {
+                            if self.countTimeBurnTaco5 < 15 && self.countTimeBurnTaco5 > 0 {
+                                whole.setImage(UIImage(named: "2단계"), for: .normal)
+                            }
+                            else if self.countTimeBurnTaco5 == 0 {
+                                self.tacoTimer5!.invalidate()
+                                self.countTimeBurnTaco5 = 30
+                                whole.setImage(UIImage(named: "3단계"), for: .normal)
+                            }
+                        }
+                    })
+                    
+                    RunLoop.current.run()
+                }
+                
+            case 6:
+                DispatchQueue.global(qos: .userInitiated).async {
+                    self.tacoTimer6 = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
+                        self.countTimeBurnTaco6 -= 1
+                        print(self.countTimeBurnTaco6)
+                      
+                        DispatchQueue.main.async {
+                            if self.countTimeBurnTaco6 < 15 && self.countTimeBurnTaco6 > 0 {
+                                whole.setImage(UIImage(named: "2단계"), for: .normal)
+                            }
+                            else if self.countTimeBurnTaco6 == 0 {
+                                self.tacoTimer6!.invalidate()
+                                self.countTimeBurnTaco6 = 30
+                                whole.setImage(UIImage(named: "3단계"), for: .normal)
+                            }
+                        }
+                    })
+                    
+                    RunLoop.current.run()
+                }
+                
+            default:
+                print("12")
+            }
+
             level[wholeIndex] += 1
         }
         
@@ -245,9 +407,26 @@ class GameViewController: UIViewController {
         }
     }
     
-    func moveTacoToPlate(from whole: UIButton) {
+//    @objc func counting(whole: UIButton) {
+//        countTimeBurnTaco -= 1
+//        print(countTimeBurnTaco)
+//        if self.countTimeBurnTaco == 0 {
+//            self.tacoTimer1!.invalidate()
+//        }
+//        DispatchQueue.main.async {
+//            if self.countTimeBurnTaco > 15 && self.countTimeBurnTaco < 20 {
+//                whole.setImage(UIImage(named: "2단계"), for: .normal)
+//            }
+//
+//            else if self.countTimeBurnTaco >= 20 {
+//                whole.setImage(UIImage(named: "3단계"), for: .normal)
+//            }
+//        }
+//    }
+    
+    func doubleTapGesture(from whole: UIButton) {
+        
         if whole.currentImage == UIImage(named: "2단계") {
-            
             let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(gestureFired))
             gestureRecognizer.numberOfTapsRequired = 2
             gestureRecognizer.numberOfTouchesRequired = 1
@@ -258,17 +437,22 @@ class GameViewController: UIViewController {
 
     }
     
-    func removeBurnTaco() {
-        
+    func removeBurnTaco(at whole: UIButton) {
+        if whole.currentImage == UIImage(named: "3단계") {
+            whole.setImage(UIImage(named: "타코야키판홀"), for: .normal)
+            level[wholeIndex] = 0
+        }
     }
     
     func rotate(_ whole: UIButton) {
-        let rotation: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
-        rotation.toValue = Double.pi * 2
-        rotation.duration = 0.15 // 1바퀴 도는데 걸리는 시간
-        rotation.isCumulative = true
-        rotation.repeatCount = 1 // 몇번 반복 할것인가
-        whole.layer.add(rotation, forKey: "rotationAnimation") // 원하는 뷰에 애니메이션 삽입
+        if whole.currentImage == UIImage(named: "1단계") {
+            let rotation: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+            rotation.toValue = Double.pi * 2
+            rotation.duration = 0.15 // 1바퀴 도는데 걸리는 시간
+            rotation.isCumulative = true
+            rotation.repeatCount = 1 // 몇번 반복 할것인가
+            whole.layer.add(rotation, forKey: "rotationAnimation") // 원하는 뷰에 애니메이션 삽입
+        }
     }
     
     

@@ -219,6 +219,7 @@
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.40000003579999999" green="0.40000003579999999" blue="0.40000003579999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstItem="cTM-1c-98P" firstAttribute="centerY" secondItem="rxT-lG-d89" secondAttribute="centerY" id="IU6-wG-yR7"/>
                                             <constraint firstItem="cTM-1c-98P" firstAttribute="centerX" secondItem="rxT-lG-d89" secondAttribute="centerX" id="xQu-b9-2FZ"/>
@@ -348,6 +349,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="OPi-HR-LoK"/>
                         <color key="backgroundColor" red="0.94509804249999996" green="0.61960786580000005" blue="0.61176472900000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="1fU-7K-VdW" firstAttribute="leading" secondItem="OPi-HR-LoK" secondAttribute="leading" id="9fi-90-wpe"/>
                             <constraint firstItem="nip-2l-ZcY" firstAttribute="bottom" secondItem="OPi-HR-LoK" secondAttribute="bottom" id="DZG-1j-lfe"/>
@@ -368,6 +370,9 @@
                             <constraint firstItem="oKB-Ai-J8W" firstAttribute="top" secondItem="1fU-7K-VdW" secondAttribute="bottom" constant="5" id="vFd-d0-mHg"/>
                             <constraint firstItem="c8b-wb-gaO" firstAttribute="leading" secondItem="nip-2l-ZcY" secondAttribute="trailing" constant="10" id="xBX-BD-liW"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="oF9-Hd-Sxk" appends="YES" id="m88-tv-aTc"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="customerImage" destination="23a-Vm-y9x" id="Tcz-y1-b2W"/>
@@ -398,6 +403,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aLo-D4-kDX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="oF9-Hd-Sxk">
+                    <connections>
+                        <outlet property="delegate" destination="cTM-1c-98P" id="8pl-dH-6Kq"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="656.25" y="73.913043478260875"/>
         </scene>
