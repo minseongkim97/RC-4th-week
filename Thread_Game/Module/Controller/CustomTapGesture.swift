@@ -9,6 +9,6 @@ import UIKit
 
 class CustomTapGesture: UITapGestureRecognizer {
     var button: UIButton = UIButton()
-    var timer: Timer? = Timer()
-    var countTime: Int = 30
+   
+    var tacoIndex: Int = 0
 }
