@@ -53,7 +53,7 @@ class GameViewController: UIViewController {
     var countTimeBurnTaco14: Int = 30
     var countTimeBurnTaco15: Int = 30
     
-    var count: Int = 200
+    var count: Int = 70
     var score: Int = 0
     var sourceIndex: Int = -1
     var wholeIndex: Int = 0
@@ -146,6 +146,7 @@ class GameViewController: UIViewController {
             tacoNumInPlate = 0
             sender.setImage(UIImage(named: "제공판"), for: .normal)
             score += 1
+            count += 5
             scoreLabel.text = String(score)
             UIView.animate(withDuration: 1) {
                 
@@ -161,7 +162,6 @@ class GameViewController: UIViewController {
                     self.customerImage.transform = CGAffineTransform(translationX:  -UIScreen.main.bounds.size.width/4, y: 0)
                 }
             }
-
         }
     }
     
@@ -169,9 +169,13 @@ class GameViewController: UIViewController {
     //MARK: - Objc Function
     @objc func timerCounter() {
         count -= 1
+        print("count value \(count)")
         
         DispatchQueue.main.async {
             self.timeLabel.text = String(self.count)
+            if self.count > 20 {
+                self.customerImage.animationImages = self.animatedImages(for: "waiting customer", imageName: "손님")
+            }
             
             if self.count == 20 {
                 
@@ -300,18 +304,10 @@ class GameViewController: UIViewController {
                       
                         DispatchQueue.main.async {
                             if self.countTimeBurnTaco0 == 15 {
+                                self.level[tacoIndex] += 1
                                 whole.setImage(UIImage(named: "2단계"), for: .normal)
                              
                                 self.doubleTapGesture(gestureRecognizer: gestureRecognizer, from: whole, index: tacoIndex)
-                            }
-                            
-                            if self.countTimeBurnTaco0 == 0 {
-                                whole.removeGestureRecognizer(gestureRecognizer)
-                                self.tacoTimer0!.invalidate()
-                                self.countTimeBurnTaco0 = 30
-                                
-                                whole.setImage(UIImage(named: "3단계"), for: .normal)
-                                
                             }
                             
                             if whole.currentImage == UIImage(named: "타코야키판홀") {
@@ -321,6 +317,15 @@ class GameViewController: UIViewController {
                             
                             if self.count == 0 {
                                 self.tacoTimer0!.invalidate()
+                            }
+                            
+                            if self.countTimeBurnTaco0 == 0 {
+                                whole.removeGestureRecognizer(gestureRecognizer)
+                                self.tacoTimer0!.invalidate()
+                                self.countTimeBurnTaco0 = 30
+                                
+                                whole.setImage(UIImage(named: "3단계"), for: .normal)
+                                
                             }
                         }
                         
@@ -341,14 +346,7 @@ class GameViewController: UIViewController {
                                 whole.setImage(UIImage(named: "2단계"), for: .normal)
                                 self.doubleTapGesture(gestureRecognizer: gestureRecognizer, from: whole, index: tacoIndex)
                             }
-                            else if self.countTimeBurnTaco1 == 0 {
-                                whole.removeGestureRecognizer(gestureRecognizer)
-                                self.tacoTimer1!.invalidate()
-                                self.countTimeBurnTaco1 = 30
-                                
-                                whole.setImage(UIImage(named: "3단계"), for: .normal)
-                            }
-
+                            
                             if whole.currentImage == UIImage(named: "타코야키판홀") {
                                 self.tacoTimer1!.invalidate()
                                 self.countTimeBurnTaco1 = 30
@@ -357,6 +355,14 @@ class GameViewController: UIViewController {
                             
                             if self.count == 0 {
                                 self.tacoTimer1!.invalidate()
+                            }
+                            
+                            if self.countTimeBurnTaco1 == 0 {
+                                whole.removeGestureRecognizer(gestureRecognizer)
+                                self.tacoTimer1!.invalidate()
+                                self.countTimeBurnTaco1 = 30
+                                
+                                whole.setImage(UIImage(named: "3단계"), for: .normal)
                             }
                         }
 
@@ -377,14 +383,6 @@ class GameViewController: UIViewController {
                                 whole.setImage(UIImage(named: "2단계"), for: .normal)
                                 self.doubleTapGesture(gestureRecognizer: gestureRecognizer, from: whole, index: tacoIndex)
                             }
-                            else if self.countTimeBurnTaco2 == 0 {
-                                whole.removeGestureRecognizer(gestureRecognizer)
-                                self.tacoTimer2!.invalidate()
-                                self.countTimeBurnTaco2 = 30
-                                
-                                whole.setImage(UIImage(named: "3단계"), for: .normal)
-                            }
-
                             if whole.currentImage == UIImage(named: "타코야키판홀") {
                                 self.tacoTimer2!.invalidate()
                                 self.countTimeBurnTaco2 = 30
@@ -394,6 +392,16 @@ class GameViewController: UIViewController {
                             if self.count == 0 {
                                 self.tacoTimer2!.invalidate()
                             }
+                            
+                            if self.countTimeBurnTaco2 == 0 {
+                                whole.removeGestureRecognizer(gestureRecognizer)
+                                self.tacoTimer2!.invalidate()
+                                self.countTimeBurnTaco2 = 30
+                                
+                                whole.setImage(UIImage(named: "3단계"), for: .normal)
+                            }
+
+                          
                         }
 
                     })
@@ -413,14 +421,7 @@ class GameViewController: UIViewController {
                                 whole.setImage(UIImage(named: "2단계"), for: .normal)
                                 self.doubleTapGesture(gestureRecognizer: gestureRecognizer, from: whole, index: tacoIndex)
                             }
-                            else if self.countTimeBurnTaco3 == 0 {
-                                whole.removeGestureRecognizer(gestureRecognizer)
-                                self.tacoTimer3!.invalidate()
-                                self.countTimeBurnTaco3 = 30
-                                
-                                whole.setImage(UIImage(named: "3단계"), for: .normal)
-                            }
-
+                            
                             if whole.currentImage == UIImage(named: "타코야키판홀") {
                                 self.tacoTimer3!.invalidate()
                                 self.countTimeBurnTaco3 = 30
@@ -429,6 +430,14 @@ class GameViewController: UIViewController {
                             
                             if self.count == 0 {
                                 self.tacoTimer3!.invalidate()
+                            }
+                            
+                            if self.countTimeBurnTaco3 == 0 {
+                                whole.removeGestureRecognizer(gestureRecognizer)
+                                self.tacoTimer3!.invalidate()
+                                self.countTimeBurnTaco3 = 30
+                                
+                                whole.setImage(UIImage(named: "3단계"), for: .normal)
                             }
                         }
 
@@ -449,14 +458,7 @@ class GameViewController: UIViewController {
                                 whole.setImage(UIImage(named: "2단계"), for: .normal)
                                 self.doubleTapGesture(gestureRecognizer: gestureRecognizer, from: whole, index: tacoIndex)
                             }
-                            else if self.countTimeBurnTaco4 == 0 {
-                                whole.removeGestureRecognizer(gestureRecognizer)
-                                self.tacoTimer4!.invalidate()
-                                self.countTimeBurnTaco4 = 30
-                                
-                                whole.setImage(UIImage(named: "3단계"), for: .normal)
-                            }
-
+                            
                             if whole.currentImage == UIImage(named: "타코야키판홀") {
                                 self.tacoTimer4!.invalidate()
                                 self.countTimeBurnTaco4 = 30
@@ -465,6 +467,14 @@ class GameViewController: UIViewController {
                             
                             if self.count == 0 {
                                 self.tacoTimer4!.invalidate()
+                            }
+                            
+                            if self.countTimeBurnTaco4 == 0 {
+                                whole.removeGestureRecognizer(gestureRecognizer)
+                                self.tacoTimer4!.invalidate()
+                                self.countTimeBurnTaco4 = 30
+                                
+                                whole.setImage(UIImage(named: "3단계"), for: .normal)
                             }
                         }
 
@@ -486,14 +496,7 @@ class GameViewController: UIViewController {
                                 whole.setImage(UIImage(named: "2단계"), for: .normal)
                                 self.doubleTapGesture(gestureRecognizer: gestureRecognizer, from: whole, index: tacoIndex)
                             }
-                            else if self.countTimeBurnTaco5 == 0 {
-                                whole.removeGestureRecognizer(gestureRecognizer)
-                                self.tacoTimer5!.invalidate()
-                                self.countTimeBurnTaco5 = 30
-                                
-                                whole.setImage(UIImage(named: "3단계"), for: .normal)
-                            }
-
+                            
                             if whole.currentImage == UIImage(named: "타코야키판홀") {
                                 self.tacoTimer5!.invalidate()
                                 self.countTimeBurnTaco5 = 30
@@ -503,12 +506,21 @@ class GameViewController: UIViewController {
                             if self.count == 0 {
                                 self.tacoTimer5!.invalidate()
                             }
+                            
+                            if self.countTimeBurnTaco5 == 0 {
+                                whole.removeGestureRecognizer(gestureRecognizer)
+                                self.tacoTimer5!.invalidate()
+                                self.countTimeBurnTaco5 = 30
+                                
+                                whole.setImage(UIImage(named: "3단계"), for: .normal)
+                            }
                         }
 
                     })
 
                     RunLoop.current.run()
                 }
+                
             case 6:
                 let tacoIndex = 6
                 let gestureRecognizer = CustomTapGesture(target: self, action: #selector(self.gestureFired))
@@ -522,14 +534,7 @@ class GameViewController: UIViewController {
                                 whole.setImage(UIImage(named: "2단계"), for: .normal)
                                 self.doubleTapGesture(gestureRecognizer: gestureRecognizer, from: whole, index: tacoIndex)
                             }
-                            else if self.countTimeBurnTaco6 == 0 {
-                                whole.removeGestureRecognizer(gestureRecognizer)
-                                self.tacoTimer6!.invalidate()
-                                self.countTimeBurnTaco6 = 30
-                                
-                                whole.setImage(UIImage(named: "3단계"), for: .normal)
-                            }
-
+                            
                             if whole.currentImage == UIImage(named: "타코야키판홀") {
                                 self.tacoTimer6!.invalidate()
                                 self.countTimeBurnTaco6 = 30
@@ -537,6 +542,14 @@ class GameViewController: UIViewController {
                             }
                             if self.count == 0 {
                                 self.tacoTimer6!.invalidate()
+                            }
+                            
+                            if self.countTimeBurnTaco6 == 0 {
+                                whole.removeGestureRecognizer(gestureRecognizer)
+                                self.tacoTimer6!.invalidate()
+                                self.countTimeBurnTaco6 = 30
+                                
+                                whole.setImage(UIImage(named: "3단계"), for: .normal)
                             }
                         }
 
@@ -558,21 +571,23 @@ class GameViewController: UIViewController {
                                 whole.setImage(UIImage(named: "2단계"), for: .normal)
                                 self.doubleTapGesture(gestureRecognizer: gestureRecognizer, from: whole, index: tacoIndex)
                             }
-                            else if self.countTimeBurnTaco7 == 0 {
-                                whole.removeGestureRecognizer(gestureRecognizer)
-                                self.tacoTimer7!.invalidate()
-                                self.countTimeBurnTaco7 = 30
-                                
-                                whole.setImage(UIImage(named: "3단계"), for: .normal)
-                            }
-
+                            
                             if whole.currentImage == UIImage(named: "타코야키판홀") {
                                 self.tacoTimer7!.invalidate()
                                 self.countTimeBurnTaco7 = 30
 
                             }
+                            
                             if self.count == 0 {
                                 self.tacoTimer7!.invalidate()
+                            }
+                            
+                            if self.countTimeBurnTaco7 == 0 {
+                                whole.removeGestureRecognizer(gestureRecognizer)
+                                self.tacoTimer7!.invalidate()
+                                self.countTimeBurnTaco7 = 30
+                                
+                                whole.setImage(UIImage(named: "3단계"), for: .normal)
                             }
                         }
 
@@ -594,14 +609,7 @@ class GameViewController: UIViewController {
                                 whole.setImage(UIImage(named: "2단계"), for: .normal)
                                 self.doubleTapGesture(gestureRecognizer: gestureRecognizer, from: whole, index: tacoIndex)
                             }
-                            else if self.countTimeBurnTaco8 == 0 {
-                                whole.removeGestureRecognizer(gestureRecognizer)
-                                self.tacoTimer8!.invalidate()
-                                self.countTimeBurnTaco8 = 30
-                                
-                                whole.setImage(UIImage(named: "3단계"), for: .normal)
-                            }
-
+                            
                             if whole.currentImage == UIImage(named: "타코야키판홀") {
                                 self.tacoTimer8!.invalidate()
                                 self.countTimeBurnTaco8 = 30
@@ -610,6 +618,14 @@ class GameViewController: UIViewController {
                             
                             if self.count == 0 {
                                 self.tacoTimer8!.invalidate()
+                            }
+                            
+                            if self.countTimeBurnTaco8 == 0 {
+                                whole.removeGestureRecognizer(gestureRecognizer)
+                                self.tacoTimer8!.invalidate()
+                                self.countTimeBurnTaco8 = 30
+                                
+                                whole.setImage(UIImage(named: "3단계"), for: .normal)
                             }
                         }
 
@@ -630,14 +646,7 @@ class GameViewController: UIViewController {
                                 whole.setImage(UIImage(named: "2단계"), for: .normal)
                                 self.doubleTapGesture(gestureRecognizer: gestureRecognizer, from: whole, index: tacoIndex)
                             }
-                            else if self.countTimeBurnTaco9 == 0 {
-                                whole.removeGestureRecognizer(gestureRecognizer)
-                                self.tacoTimer9!.invalidate()
-                                self.countTimeBurnTaco9 = 30
-                                
-                                whole.setImage(UIImage(named: "3단계"), for: .normal)
-                            }
-
+                            
                             if whole.currentImage == UIImage(named: "타코야키판홀") {
                                 self.tacoTimer9!.invalidate()
                                 self.countTimeBurnTaco9 = 30
@@ -646,6 +655,14 @@ class GameViewController: UIViewController {
                             
                             if self.count == 0 {
                                 self.tacoTimer9!.invalidate()
+                            }
+                            
+                            if self.countTimeBurnTaco9 == 0 {
+                                whole.removeGestureRecognizer(gestureRecognizer)
+                                self.tacoTimer9!.invalidate()
+                                self.countTimeBurnTaco9 = 30
+                                
+                                whole.setImage(UIImage(named: "3단계"), for: .normal)
                             }
                         }
 
@@ -667,14 +684,7 @@ class GameViewController: UIViewController {
                                 whole.setImage(UIImage(named: "2단계"), for: .normal)
                                 self.doubleTapGesture(gestureRecognizer: gestureRecognizer, from: whole, index: tacoIndex)
                             }
-                            else if self.countTimeBurnTaco10 == 0 {
-                                whole.removeGestureRecognizer(gestureRecognizer)
-                                self.tacoTimer10!.invalidate()
-                                self.countTimeBurnTaco10 = 30
-                                
-                                whole.setImage(UIImage(named: "3단계"), for: .normal)
-                            }
-
+                            
                             if whole.currentImage == UIImage(named: "타코야키판홀") {
                                 self.tacoTimer10!.invalidate()
                                 self.countTimeBurnTaco10 = 30
@@ -683,6 +693,14 @@ class GameViewController: UIViewController {
                             
                             if self.count == 0 {
                                 self.tacoTimer10!.invalidate()
+                            }
+                            
+                            if self.countTimeBurnTaco10 == 0 {
+                                whole.removeGestureRecognizer(gestureRecognizer)
+                                self.tacoTimer10!.invalidate()
+                                self.countTimeBurnTaco10 = 30
+                                
+                                whole.setImage(UIImage(named: "3단계"), for: .normal)
                             }
                         }
 
@@ -704,14 +722,7 @@ class GameViewController: UIViewController {
                                 whole.setImage(UIImage(named: "2단계"), for: .normal)
                                 self.doubleTapGesture(gestureRecognizer: gestureRecognizer, from: whole, index: tacoIndex)
                             }
-                            else if self.countTimeBurnTaco11 == 0 {
-                                whole.removeGestureRecognizer(gestureRecognizer)
-                                self.tacoTimer11!.invalidate()
-                                self.countTimeBurnTaco11 = 30
-                                
-                                whole.setImage(UIImage(named: "3단계"), for: .normal)
-                            }
-
+                            
                             if whole.currentImage == UIImage(named: "타코야키판홀") {
                                 self.tacoTimer11!.invalidate()
                                 self.countTimeBurnTaco11 = 30
@@ -720,6 +731,14 @@ class GameViewController: UIViewController {
                             
                             if self.count == 0 {
                                 self.tacoTimer11!.invalidate()
+                            }
+                            
+                            if self.countTimeBurnTaco11 == 0 {
+                                whole.removeGestureRecognizer(gestureRecognizer)
+                                self.tacoTimer11!.invalidate()
+                                self.countTimeBurnTaco11 = 30
+                                
+                                whole.setImage(UIImage(named: "3단계"), for: .normal)
                             }
                         }
 
@@ -741,14 +760,8 @@ class GameViewController: UIViewController {
                                 whole.setImage(UIImage(named: "2단계"), for: .normal)
                                 self.doubleTapGesture(gestureRecognizer: gestureRecognizer, from: whole, index: tacoIndex)
                             }
-                            else if self.countTimeBurnTaco12 == 0 {
-                                whole.removeGestureRecognizer(gestureRecognizer)
-                                self.tacoTimer12!.invalidate()
-                                self.countTimeBurnTaco12 = 30
-                                
-                                whole.setImage(UIImage(named: "3단계"), for: .normal)
-                            }
-
+                            
+                            
                             if whole.currentImage == UIImage(named: "타코야키판홀") {
                                 self.tacoTimer12!.invalidate()
                                 self.countTimeBurnTaco12 = 30
@@ -757,6 +770,14 @@ class GameViewController: UIViewController {
                             
                             if self.count == 0 {
                                 self.tacoTimer12!.invalidate()
+                            }
+                            
+                            if self.countTimeBurnTaco12 == 0 {
+                                whole.removeGestureRecognizer(gestureRecognizer)
+                                self.tacoTimer12!.invalidate()
+                                self.countTimeBurnTaco12 = 30
+                                
+                                whole.setImage(UIImage(named: "3단계"), for: .normal)
                             }
                         }
 
@@ -778,14 +799,7 @@ class GameViewController: UIViewController {
                                 whole.setImage(UIImage(named: "2단계"), for: .normal)
                                 self.doubleTapGesture(gestureRecognizer: gestureRecognizer, from: whole, index: tacoIndex)
                             }
-                            else if self.countTimeBurnTaco13 == 0 {
-                                whole.removeGestureRecognizer(gestureRecognizer)
-                                self.tacoTimer13!.invalidate()
-                                self.countTimeBurnTaco13 = 30
-                                
-                                whole.setImage(UIImage(named: "3단계"), for: .normal)
-                            }
-
+                            
                             if whole.currentImage == UIImage(named: "타코야키판홀") {
                                 self.tacoTimer13!.invalidate()
                                 self.countTimeBurnTaco13 = 30
@@ -794,6 +808,14 @@ class GameViewController: UIViewController {
                             
                             if self.count == 0 {
                                 self.tacoTimer13!.invalidate()
+                            }
+                            
+                            if self.countTimeBurnTaco13 == 0 {
+                                whole.removeGestureRecognizer(gestureRecognizer)
+                                self.tacoTimer13!.invalidate()
+                                self.countTimeBurnTaco13 = 30
+                                
+                                whole.setImage(UIImage(named: "3단계"), for: .normal)
                             }
                         }
 
@@ -815,14 +837,7 @@ class GameViewController: UIViewController {
                                 whole.setImage(UIImage(named: "2단계"), for: .normal)
                                 self.doubleTapGesture(gestureRecognizer: gestureRecognizer, from: whole, index: tacoIndex)
                             }
-                            else if self.countTimeBurnTaco14 == 0 {
-                                whole.removeGestureRecognizer(gestureRecognizer)
-                                self.tacoTimer14!.invalidate()
-                                self.countTimeBurnTaco14 = 30
-                                
-                                whole.setImage(UIImage(named: "3단계"), for: .normal)
-                            }
-
+                            
                             if whole.currentImage == UIImage(named: "타코야키판홀") {
                                 self.tacoTimer14!.invalidate()
                                 self.countTimeBurnTaco14 = 30
@@ -831,6 +846,14 @@ class GameViewController: UIViewController {
                             
                             if self.count == 0 {
                                 self.tacoTimer14!.invalidate()
+                            }
+                            
+                            if self.countTimeBurnTaco14 == 0 {
+                                whole.removeGestureRecognizer(gestureRecognizer)
+                                self.tacoTimer14!.invalidate()
+                                self.countTimeBurnTaco14 = 30
+                                
+                                whole.setImage(UIImage(named: "3단계"), for: .normal)
                             }
                         }
 
@@ -852,14 +875,8 @@ class GameViewController: UIViewController {
                                 whole.setImage(UIImage(named: "2단계"), for: .normal)
                                 self.doubleTapGesture(gestureRecognizer: gestureRecognizer, from: whole, index: tacoIndex)
                             }
-                            else if self.countTimeBurnTaco15 == 0 {
-                                whole.removeGestureRecognizer(gestureRecognizer)
-                                self.tacoTimer15!.invalidate()
-                                self.countTimeBurnTaco15 = 30
-                                
-                                whole.setImage(UIImage(named: "3단계"), for: .normal)
-                            }
-
+                            
+                            
                             if whole.currentImage == UIImage(named: "타코야키판홀") {
                                 self.tacoTimer15!.invalidate()
                                 self.countTimeBurnTaco15 = 30
@@ -868,6 +885,14 @@ class GameViewController: UIViewController {
                             
                             if self.count == 0 {
                                 self.tacoTimer15!.invalidate()
+                            }
+                            
+                            if self.countTimeBurnTaco15 == 0 {
+                                whole.removeGestureRecognizer(gestureRecognizer)
+                                self.tacoTimer15!.invalidate()
+                                self.countTimeBurnTaco15 = 30
+                                
+                                whole.setImage(UIImage(named: "3단계"), for: .normal)
                             }
                         }
 
@@ -887,7 +912,6 @@ class GameViewController: UIViewController {
         }
     }
     
-
     
     func doubleTapGesture(gestureRecognizer: CustomTapGesture,from whole: UIButton, index tacoIndex: Int) {
  
