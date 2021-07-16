@@ -207,9 +207,10 @@ class GameViewController: UIViewController {
     
     @objc func gestureFired(_ gesture: CustomTapGesture) {
         
-        gesture.button.layer.removeAllAnimations()
-        if gesture.button.currentImage == UIImage(named: "2단계") {
-            
+       
+        
+        if gesture.button.currentImage == UIImage(named: "2단계") && sourceIndex == 2 {
+            gesture.button.layer.removeAllAnimations()
             switch tacoNumInPlate {
             case 0:
                 gesture.button.setImage(UIImage(named: "타코야키판홀"), for: .normal)
