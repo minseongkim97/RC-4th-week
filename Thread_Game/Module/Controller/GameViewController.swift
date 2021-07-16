@@ -53,7 +53,7 @@ class GameViewController: UIViewController {
     var countTimeBurnTaco14: Int = 30
     var countTimeBurnTaco15: Int = 30
     
-    var count: Int = 70
+    var count: Int = 200
     var score: Int = 0
     var sourceIndex: Int = -1
     var wholeIndex: Int = 0
@@ -148,18 +148,20 @@ class GameViewController: UIViewController {
             score += 1
             count += 5
             scoreLabel.text = String(score)
-            UIView.animate(withDuration: 1) {
+            UIView.animate(withDuration: 1.5) {
                 
-                self.customerImage.transform = CGAffineTransform(translationX:  -UIScreen.main.bounds.size.width, y: 0)
+                self.customerImage.transform = CGAffineTransform(translationX:  -UIScreen.main.bounds.size.width * 2, y: 0)
                 
             } completion: { _ in
                 self.customerImage.image = UIImage(named: "손님")
+                
                 UIView.animate(withDuration: 0) {
                     self.customerImage.transform = CGAffineTransform.identity
-                }
-                UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut) {
+                } completion: { _ in
+                    UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut) {
 
-                    self.customerImage.transform = CGAffineTransform(translationX:  -UIScreen.main.bounds.size.width/4, y: 0)
+                        self.customerImage.transform = CGAffineTransform(translationX:  -UIScreen.main.bounds.size.width/4, y: 0)
+                    }
                 }
             }
         }
@@ -169,7 +171,6 @@ class GameViewController: UIViewController {
     //MARK: - Objc Function
     @objc func timerCounter() {
         count -= 1
-        print("count value \(count)")
         
         DispatchQueue.main.async {
             self.timeLabel.text = String(self.count)
@@ -300,8 +301,8 @@ class GameViewController: UIViewController {
                 let tacoIndex = 0
                 print("tacoLevel \(level[tacoIndex])")
                 let gestureRecognizer = CustomTapGesture(target: self, action: #selector(self.gestureFired))
-//                DispatchQueue.global(qos: .userInitiated).async {
-                UIView.animate(withDuration: 0, delay: 15.0, options: [.allowUserInteraction]) {
+              
+                UIView.animate(withDuration: 15.0, delay: 0.0, options: [.allowUserInteraction]) {
                         whole.alpha = 0.9
                     } completion: { _ in
                         self.level[tacoIndex] += 1
@@ -353,12 +354,12 @@ class GameViewController: UIViewController {
 //                    })
 //
 //                    RunLoop.current.run()
-//                }
+                
             case 1:
                 let tacoIndex = 1
                 let gestureRecognizer = CustomTapGesture(target: self, action: #selector(self.gestureFired))
 //                DispatchQueue.global(qos: .userInitiated).async {
-                UIView.animate(withDuration: 0, delay: 15.0, options: [.allowUserInteraction]) {
+                UIView.animate(withDuration: 15.0, delay: 0.0, options: [.allowUserInteraction]) {
                         whole.alpha = 0.9
                     } completion: { _ in
                         self.level[tacoIndex] += 1
