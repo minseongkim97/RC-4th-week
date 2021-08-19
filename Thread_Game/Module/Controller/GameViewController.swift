@@ -17,40 +17,8 @@ class GameViewController: UIViewController {
     @IBOutlet var wholeButtons: [UIButton]!
     @IBOutlet weak var plateButton: UIButton!
     
-    
     var timer: Timer?
-//    var tacoTimer0: Timer?
-//    var tacoTimer1: Timer?
-//    var tacoTimer2: Timer?
-//    var tacoTimer3: Timer?
-//    var tacoTimer4: Timer?
-    var tacoTimer5: Timer?
-    var tacoTimer6: Timer?
-    var tacoTimer7: Timer?
-    var tacoTimer8: Timer?
-    var tacoTimer9: Timer?
-    var tacoTimer10: Timer?
-    var tacoTimer11: Timer?
-    var tacoTimer12: Timer?
-    var tacoTimer13: Timer?
-    var tacoTimer14: Timer?
     var tacoTimer15: Timer?
-
-//    var countTimeBurnTaco0: Int = 30
-//    var countTimeBurnTaco1: Int = 30
-//    var countTimeBurnTaco2: Int = 30
-//    var countTimeBurnTaco3: Int = 30
-//    var countTimeBurnTaco4: Int = 30
-    var countTimeBurnTaco5: Int = 30
-    var countTimeBurnTaco6: Int = 30
-    var countTimeBurnTaco7: Int = 30
-    var countTimeBurnTaco8: Int = 30
-    var countTimeBurnTaco9: Int = 30
-    var countTimeBurnTaco10: Int = 30
-    var countTimeBurnTaco11: Int = 30
-    var countTimeBurnTaco12: Int = 30
-    var countTimeBurnTaco13: Int = 30
-    var countTimeBurnTaco14: Int = 30
     var countTimeBurnTaco15: Int = 30
     
     var count: Int = 200
@@ -170,9 +138,11 @@ class GameViewController: UIViewController {
     
     //MARK: - Objc Function
     @objc func timerCounter() {
-        count -= 1
+       
         
         DispatchQueue.main.async {
+            // count에 따라 UI가 업데이트
+            self.count -= 1
             self.timeLabel.text = String(self.count)
             if self.count > 20 {
 
@@ -307,7 +277,9 @@ class GameViewController: UIViewController {
                 
             case 1:
                 let tacoIndex = 1
+                
                 tacoStep(at: whole, tacoIndex: tacoIndex)
+                
                 
             case 2:
                 let tacoIndex = 2
@@ -320,383 +292,39 @@ class GameViewController: UIViewController {
                 tacoStep(at: whole, tacoIndex: tacoIndex)
             case 5:
                 let tacoIndex = 5
-                let gestureRecognizer = CustomTapGesture(target: self, action: #selector(self.gestureFired))
-                DispatchQueue.global(qos: .userInitiated).async {
-                    self.tacoTimer5 = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
-                        self.countTimeBurnTaco5 -= 1
-                        print(self.countTimeBurnTaco5)
-
-                        DispatchQueue.main.async {
-                            if self.countTimeBurnTaco5 == 15 {
-                                whole.setImage(UIImage(named: "2단계"), for: .normal)
-                                self.doubleTapGesture(gestureRecognizer: gestureRecognizer, from: whole, index: tacoIndex)
-                            }
-                            
-                            if whole.currentImage == UIImage(named: "타코야키판홀") {
-                                self.tacoTimer5!.invalidate()
-                                self.countTimeBurnTaco5 = 30
-
-                            }
-                            
-                            if self.count == 0 {
-                                self.tacoTimer5!.invalidate()
-                            }
-                            
-                            if self.countTimeBurnTaco5 == 0 {
-                                whole.removeGestureRecognizer(gestureRecognizer)
-                                self.tacoTimer5!.invalidate()
-                                self.countTimeBurnTaco5 = 30
-                                
-                                whole.setImage(UIImage(named: "3단계"), for: .normal)
-                            }
-                        }
-
-                    })
-
-                    RunLoop.current.run()
-                }
+                tacoStep(at: whole, tacoIndex: tacoIndex)
                 
             case 6:
                 let tacoIndex = 6
-                let gestureRecognizer = CustomTapGesture(target: self, action: #selector(self.gestureFired))
-                DispatchQueue.global(qos: .userInitiated).async {
-                    self.tacoTimer6 = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
-                        self.countTimeBurnTaco6 -= 1
-                        print(self.countTimeBurnTaco6)
-
-                        DispatchQueue.main.async {
-                            if self.countTimeBurnTaco6 == 15 {
-                                whole.setImage(UIImage(named: "2단계"), for: .normal)
-                                self.doubleTapGesture(gestureRecognizer: gestureRecognizer, from: whole, index: tacoIndex)
-                            }
-                            
-                            if whole.currentImage == UIImage(named: "타코야키판홀") {
-                                self.tacoTimer6!.invalidate()
-                                self.countTimeBurnTaco6 = 30
-
-                            }
-                            if self.count == 0 {
-                                self.tacoTimer6!.invalidate()
-                            }
-                            
-                            if self.countTimeBurnTaco6 == 0 {
-                                whole.removeGestureRecognizer(gestureRecognizer)
-                                self.tacoTimer6!.invalidate()
-                                self.countTimeBurnTaco6 = 30
-                                
-                                whole.setImage(UIImage(named: "3단계"), for: .normal)
-                            }
-                        }
-
-                    })
-
-                    RunLoop.current.run()
-                }
+                tacoStep(at: whole, tacoIndex: tacoIndex)
 
             case 7:
                 let tacoIndex = 7
-                let gestureRecognizer = CustomTapGesture(target: self, action: #selector(self.gestureFired))
-                DispatchQueue.global(qos: .userInitiated).async {
-                    self.tacoTimer7 = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
-                        self.countTimeBurnTaco7 -= 1
-                        print(self.countTimeBurnTaco7)
-
-                        DispatchQueue.main.async {
-                            if self.countTimeBurnTaco7 == 15 {
-                                whole.setImage(UIImage(named: "2단계"), for: .normal)
-                                self.doubleTapGesture(gestureRecognizer: gestureRecognizer, from: whole, index: tacoIndex)
-                            }
-                            
-                            if whole.currentImage == UIImage(named: "타코야키판홀") {
-                                self.tacoTimer7!.invalidate()
-                                self.countTimeBurnTaco7 = 30
-
-                            }
-                            
-                            if self.count == 0 {
-                                self.tacoTimer7!.invalidate()
-                            }
-                            
-                            if self.countTimeBurnTaco7 == 0 {
-                                whole.removeGestureRecognizer(gestureRecognizer)
-                                self.tacoTimer7!.invalidate()
-                                self.countTimeBurnTaco7 = 30
-                                
-                                whole.setImage(UIImage(named: "3단계"), for: .normal)
-                            }
-                        }
-
-                    })
-
-                    RunLoop.current.run()
-                }
-
+                tacoStep(at: whole, tacoIndex: tacoIndex)
             case 8:
                 let tacoIndex = 8
-                let gestureRecognizer = CustomTapGesture(target: self, action: #selector(self.gestureFired))
-                DispatchQueue.global(qos: .userInitiated).async {
-                    self.tacoTimer8 = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
-                        self.countTimeBurnTaco8 -= 1
-                        print(self.countTimeBurnTaco8)
-
-                        DispatchQueue.main.async {
-                            if self.countTimeBurnTaco8 == 15 {
-                                whole.setImage(UIImage(named: "2단계"), for: .normal)
-                                self.doubleTapGesture(gestureRecognizer: gestureRecognizer, from: whole, index: tacoIndex)
-                            }
-                            
-                            if whole.currentImage == UIImage(named: "타코야키판홀") {
-                                self.tacoTimer8!.invalidate()
-                                self.countTimeBurnTaco8 = 30
-
-                            }
-                            
-                            if self.count == 0 {
-                                self.tacoTimer8!.invalidate()
-                            }
-                            
-                            if self.countTimeBurnTaco8 == 0 {
-                                whole.removeGestureRecognizer(gestureRecognizer)
-                                self.tacoTimer8!.invalidate()
-                                self.countTimeBurnTaco8 = 30
-                                
-                                whole.setImage(UIImage(named: "3단계"), for: .normal)
-                            }
-                        }
-
-                    })
-
-                    RunLoop.current.run()
-                }
+                tacoStep(at: whole, tacoIndex: tacoIndex)
             case 9:
                 let tacoIndex = 9
-                let gestureRecognizer = CustomTapGesture(target: self, action: #selector(self.gestureFired))
-                DispatchQueue.global(qos: .userInitiated).async {
-                    self.tacoTimer9 = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
-                        self.countTimeBurnTaco9 -= 1
-                        print(self.countTimeBurnTaco9)
-
-                        DispatchQueue.main.async {
-                            if self.countTimeBurnTaco9 == 15 {
-                                whole.setImage(UIImage(named: "2단계"), for: .normal)
-                                self.doubleTapGesture(gestureRecognizer: gestureRecognizer, from: whole, index: tacoIndex)
-                            }
-                            
-                            if whole.currentImage == UIImage(named: "타코야키판홀") {
-                                self.tacoTimer9!.invalidate()
-                                self.countTimeBurnTaco9 = 30
-
-                            }
-                            
-                            if self.count == 0 {
-                                self.tacoTimer9!.invalidate()
-                            }
-                            
-                            if self.countTimeBurnTaco9 == 0 {
-                                whole.removeGestureRecognizer(gestureRecognizer)
-                                self.tacoTimer9!.invalidate()
-                                self.countTimeBurnTaco9 = 30
-                                
-                                whole.setImage(UIImage(named: "3단계"), for: .normal)
-                            }
-                        }
-
-                    })
-
-                    RunLoop.current.run()
-                }
-
+                tacoStep(at: whole, tacoIndex: tacoIndex)
             case 10:
                 let tacoIndex = 10
-                let gestureRecognizer = CustomTapGesture(target: self, action: #selector(self.gestureFired))
-                DispatchQueue.global(qos: .userInitiated).async {
-                    self.tacoTimer10 = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
-                        self.countTimeBurnTaco10 -= 1
-                        print(self.countTimeBurnTaco10)
-
-                        DispatchQueue.main.async {
-                            if self.countTimeBurnTaco10 == 15 {
-                                whole.setImage(UIImage(named: "2단계"), for: .normal)
-                                self.doubleTapGesture(gestureRecognizer: gestureRecognizer, from: whole, index: tacoIndex)
-                            }
-                            
-                            if whole.currentImage == UIImage(named: "타코야키판홀") {
-                                self.tacoTimer10!.invalidate()
-                                self.countTimeBurnTaco10 = 30
-
-                            }
-                            
-                            if self.count == 0 {
-                                self.tacoTimer10!.invalidate()
-                            }
-                            
-                            if self.countTimeBurnTaco10 == 0 {
-                                whole.removeGestureRecognizer(gestureRecognizer)
-                                self.tacoTimer10!.invalidate()
-                                self.countTimeBurnTaco10 = 30
-                                
-                                whole.setImage(UIImage(named: "3단계"), for: .normal)
-                            }
-                        }
-
-                    })
-
-                    RunLoop.current.run()
-                }
+                tacoStep(at: whole, tacoIndex: tacoIndex)
 
             case 11:
                 let tacoIndex = 11
-                let gestureRecognizer = CustomTapGesture(target: self, action: #selector(self.gestureFired))
-                DispatchQueue.global(qos: .userInitiated).async {
-                    self.tacoTimer11 = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
-                        self.countTimeBurnTaco11 -= 1
-                        print(self.countTimeBurnTaco11)
-
-                        DispatchQueue.main.async {
-                            if self.countTimeBurnTaco11 == 15 {
-                                whole.setImage(UIImage(named: "2단계"), for: .normal)
-                                self.doubleTapGesture(gestureRecognizer: gestureRecognizer, from: whole, index: tacoIndex)
-                            }
-                            
-                            if whole.currentImage == UIImage(named: "타코야키판홀") {
-                                self.tacoTimer11!.invalidate()
-                                self.countTimeBurnTaco11 = 30
-
-                            }
-                            
-                            if self.count == 0 {
-                                self.tacoTimer11!.invalidate()
-                            }
-                            
-                            if self.countTimeBurnTaco11 == 0 {
-                                whole.removeGestureRecognizer(gestureRecognizer)
-                                self.tacoTimer11!.invalidate()
-                                self.countTimeBurnTaco11 = 30
-                                
-                                whole.setImage(UIImage(named: "3단계"), for: .normal)
-                            }
-                        }
-
-                    })
-
-                    RunLoop.current.run()
-                }
+                tacoStep(at: whole, tacoIndex: tacoIndex)
 
             case 12:
                 let tacoIndex = 12
-                let gestureRecognizer = CustomTapGesture(target: self, action: #selector(self.gestureFired))
-                DispatchQueue.global(qos: .userInitiated).async {
-                    self.tacoTimer12 = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
-                        self.countTimeBurnTaco12 -= 1
-                        print(self.countTimeBurnTaco12)
-
-                        DispatchQueue.main.async {
-                            if self.countTimeBurnTaco12 == 15 {
-                                whole.setImage(UIImage(named: "2단계"), for: .normal)
-                                self.doubleTapGesture(gestureRecognizer: gestureRecognizer, from: whole, index: tacoIndex)
-                            }
-                            
-                            
-                            if whole.currentImage == UIImage(named: "타코야키판홀") {
-                                self.tacoTimer12!.invalidate()
-                                self.countTimeBurnTaco12 = 30
-
-                            }
-                            
-                            if self.count == 0 {
-                                self.tacoTimer12!.invalidate()
-                            }
-                            
-                            if self.countTimeBurnTaco12 == 0 {
-                                whole.removeGestureRecognizer(gestureRecognizer)
-                                self.tacoTimer12!.invalidate()
-                                self.countTimeBurnTaco12 = 30
-                                
-                                whole.setImage(UIImage(named: "3단계"), for: .normal)
-                            }
-                        }
-
-                    })
-
-                    RunLoop.current.run()
-                }
-
+                tacoStep(at: whole, tacoIndex: tacoIndex)
             case 13:
                 let tacoIndex = 13
-                let gestureRecognizer = CustomTapGesture(target: self, action: #selector(self.gestureFired))
-                DispatchQueue.global(qos: .userInitiated).async {
-                    self.tacoTimer13 = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
-                        self.countTimeBurnTaco13 -= 1
-                        print(self.countTimeBurnTaco13)
-
-                        DispatchQueue.main.async {
-                            if self.countTimeBurnTaco13 == 15 {
-                                whole.setImage(UIImage(named: "2단계"), for: .normal)
-                                self.doubleTapGesture(gestureRecognizer: gestureRecognizer, from: whole, index: tacoIndex)
-                            }
-                            
-                            if whole.currentImage == UIImage(named: "타코야키판홀") {
-                                self.tacoTimer13!.invalidate()
-                                self.countTimeBurnTaco13 = 30
-
-                            }
-                            
-                            if self.count == 0 {
-                                self.tacoTimer13!.invalidate()
-                            }
-                            
-                            if self.countTimeBurnTaco13 == 0 {
-                                whole.removeGestureRecognizer(gestureRecognizer)
-                                self.tacoTimer13!.invalidate()
-                                self.countTimeBurnTaco13 = 30
-                                
-                                whole.setImage(UIImage(named: "3단계"), for: .normal)
-                            }
-                        }
-
-                    })
-
-                    RunLoop.current.run()
-                }
+                tacoStep(at: whole, tacoIndex: tacoIndex)
 
             case 14:
                 let tacoIndex = 14
-                let gestureRecognizer = CustomTapGesture(target: self, action: #selector(self.gestureFired))
-                DispatchQueue.global(qos: .userInitiated).async {
-                    self.tacoTimer14 = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
-                        self.countTimeBurnTaco14 -= 1
-                        print(self.countTimeBurnTaco14)
-
-                        DispatchQueue.main.async {
-                            if self.countTimeBurnTaco14 == 15 {
-                                whole.setImage(UIImage(named: "2단계"), for: .normal)
-                                self.doubleTapGesture(gestureRecognizer: gestureRecognizer, from: whole, index: tacoIndex)
-                            }
-                            
-                            if whole.currentImage == UIImage(named: "타코야키판홀") {
-                                self.tacoTimer14!.invalidate()
-                                self.countTimeBurnTaco14 = 30
-
-                            }
-                            
-                            if self.count == 0 {
-                                self.tacoTimer14!.invalidate()
-                            }
-                            
-                            if self.countTimeBurnTaco14 == 0 {
-                                whole.removeGestureRecognizer(gestureRecognizer)
-                                self.tacoTimer14!.invalidate()
-                                self.countTimeBurnTaco14 = 30
-                                
-                                whole.setImage(UIImage(named: "3단계"), for: .normal)
-                            }
-                        }
-
-                    })
-
-                    RunLoop.current.run()
-                }
-
+                tacoStep(at: whole, tacoIndex: tacoIndex)
             case 15:
                 let tacoIndex = 15
                 let gestureRecognizer = CustomTapGesture(target: self, action: #selector(self.gestureFired))
@@ -758,9 +386,10 @@ class GameViewController: UIViewController {
         whole.addGestureRecognizer(gestureRecognizer)
     }
     
+    
     func tacoStep(at whole: UIButton, tacoIndex: Int) {
         let gestureRecognizer = CustomTapGesture(target: self, action: #selector(self.gestureFired))
-      
+
         UIView.animate(withDuration: 15.0, delay: 0.0, options: [.allowUserInteraction]) {
                 whole.alpha = 0.9
             } completion: { _ in
@@ -777,6 +406,7 @@ class GameViewController: UIViewController {
                 }
                  
             }
+        
     }
     
     func removeBurnTaco(at whole: UIButton) {
